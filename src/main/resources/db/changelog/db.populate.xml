@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="insert-users" author="lbanko">
+        <insert tableName="users">
+            <column name="username">leon</column>
+        </insert>
+        <insert tableName="users">
+            <column name="username">marko</column>
+        </insert>
+        <insert tableName="users">
+            <column name="username">ivan</column>
+        </insert>
+    </changeSet>
+
+    <changeSet id="insert-vhs" author="lbanko">
+        <insert tableName="vhs">
+            <column name="title">The Matrix</column>
+        </insert>
+        <insert tableName="vhs">
+            <column name="title">Pulp Fiction</column>
+        </insert>
+        <insert tableName="vhs">
+            <column name="title">Fight Club</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

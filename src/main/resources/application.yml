@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: vhs-rental
+
+    liquibase:
+        change-log: /db/changelog/db.changelog-master.xml
