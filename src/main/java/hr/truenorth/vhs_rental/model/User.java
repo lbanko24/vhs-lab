@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+/**
+ * Object for storing and handling user info.
+ * It can rent and return VHS. Contains id and username.
+ */
 @Entity
 @Data
 @NoArgsConstructor

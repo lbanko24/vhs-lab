@@ -12,6 +12,9 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Service used to handle logic and access to rental repository
+ */
 @Service
 @PropertySource("classpath:fee.yml")
 public class RentalService extends AbstractCrudService<Rental, RentalRepository> {
@@ -34,6 +37,12 @@ public class RentalService extends AbstractCrudService<Rental, RentalRepository>
         return repository.save(rental);
     }
 
+    /**
+     * Calculates late fees based on due and return dates.
+     *
+     * @param rental the rental for which to calculate late fee
+     * @return late fee amount
+     */
     public float lateFee(Rental rental) {
         if (rental.getDateReturned() == null || Date.valueOf(LocalDate.now()).before(rental.getDateDue())) {
             return 0;
@@ -46,6 +55,11 @@ public class RentalService extends AbstractCrudService<Rental, RentalRepository>
         return days * dailyFee;
     }
 
+    /**
+     * Sets return date to current day.
+     *
+     * @param rental the rental of the vhs that is being returned
+     */
     public void returnVHS(Rental rental) {
         if (rental.getDateReturned() != null) {
             throw new AlreadyReturnedException("VHS already returned", rental.getDateReturned());

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.Locale;
 
+/**
+ * Global exception handler
+ */
 @RestControllerAdvice
 public class AppExceptionHandler {
 
@@ -29,6 +32,13 @@ public class AppExceptionHandler {
         this.messageSource = messageSource;
     }
 
+    /**
+     * Handles {@link ResourceNotFoundException}.
+     *
+     * @param ex the exception
+     * @param locale the locale
+     * @return not found status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleResourceNotFound(ResourceNotFoundException ex, Locale locale) {
@@ -37,6 +47,13 @@ public class AppExceptionHandler {
         return messageSource.getMessage("error.not_found", null, locale);
     }
 
+    /**
+     * Handles {@link AlreadyRentedException}.
+     *
+     * @param ex the exception
+     * @param locale the locale
+     * @return forbidden status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public String handleAlreadyRented(AlreadyRentedException ex, Locale locale) {
@@ -52,6 +69,13 @@ public class AppExceptionHandler {
         return sb.toString();
     }
 
+    /**
+     * Handles {@link AlreadyReturnedException}.
+     *
+     * @param ex the exception
+     * @param locale the locale
+     * @return forbidden status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public String handleAlreadyReturned(AlreadyReturnedException ex, Locale locale) {
@@ -61,6 +85,12 @@ public class AppExceptionHandler {
         return message + " " + ex.getReturnDate();
     }
 
+    /**
+     * Handles {@link ConstraintViolationException}.
+     *
+     * @param ex the exception
+     * @return bad request status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleConstraintViolation(ConstraintViolationException ex) {
@@ -75,6 +105,13 @@ public class AppExceptionHandler {
         return sb.toString();
     }
 
+    /**
+     * Handles {@link MethodArgumentNotValidException}.
+     *
+     * @param ex the exception
+     * @param locale the locale
+     * @return bad request status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleMethodArgumentNotValid(MethodArgumentNotValidException ex, Locale locale) {
@@ -83,6 +120,13 @@ public class AppExceptionHandler {
         return messageSource.getMessage("error.invalid_arguments", null, locale);
     }
 
+    /**
+     * Handles {@link UsernameTakenException}.
+     *
+     * @param ex the exception
+     * @param locale the locale
+     * @return forbidden status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.FORBIDDEN)
     public String handleUsernameTaken(UsernameTakenException ex, Locale locale) {
@@ -91,6 +135,13 @@ public class AppExceptionHandler {
         return messageSource.getMessage("error.username_taken", null, locale);
     }
 
+    /**
+     * Handles unexpected exceptions.
+     *
+     * @param ex the exception
+     * @param locale the locale
+     * @return internal server error status with appropriate message
+     */
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleOther(Exception ex, Locale locale) {

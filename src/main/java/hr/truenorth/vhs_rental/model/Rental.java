@@ -1,10 +1,15 @@
 package hr.truenorth.vhs_rental.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
 
+/**
+ * Object for storing and handling rental info
+ * Contains id, user id, vhs id, rented date, due date and return date.
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -28,20 +33,20 @@ public class Rental {
     @Column(name = "date_due")
     private Date dateDue;
 
+    @Column(name = "date_returned")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Date dateReturned;
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Rental)) {
+        if (!(obj instanceof Rental rental)) {
             return false;
         }
 
-        Rental rental = (Rental) obj;
-        boolean x = rental.getId().equals(id) &&
+        return rental.getId().equals(id) &&
             rental.getUser().getId().equals(user.getId()) &&
             rental.getVhs().getId().equals(vhs.getId()) &&
             rental.getDateRented().toLocalDate().equals(dateRented.toLocalDate()) &&
             rental.getDateDue().toLocalDate().equals(dateDue.toLocalDate());
-        return x;
     }
 }

@@ -10,8 +10,19 @@ import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * Repository used for accessing the rentals table
+ */
 @Repository
 public interface RentalRepository extends JpaRepository<Rental, Long> {
+    /**
+     * Finds rentals with conflicting date ranges (rented and due) for a given VHS and date range.
+     *
+     * @param vhs the vhs
+     * @param start the start of the range
+     * @param end the end of the date range
+     * @return list of rentals with dates conflicting the given date range
+     */
     @Query(value = "SELECT r FROM Rental r WHERE " +
             "r.vhs = :vhs AND " +
             ":start <= r.dateDue AND " +

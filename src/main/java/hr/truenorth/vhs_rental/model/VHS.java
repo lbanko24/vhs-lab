@@ -7,6 +7,10 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+/**
+ * Object for storing and handling VHS info
+ * It can be rented and returned. Contains id and title.
+ */
 @Entity
 @Data
 @NoArgsConstructor

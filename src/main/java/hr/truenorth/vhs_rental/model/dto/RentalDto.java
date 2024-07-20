@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
+/**
+ * DTO used to create and update rentals.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

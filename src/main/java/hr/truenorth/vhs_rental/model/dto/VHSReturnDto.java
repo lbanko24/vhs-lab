@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
+/**
+ * DTO used for vhs return response.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

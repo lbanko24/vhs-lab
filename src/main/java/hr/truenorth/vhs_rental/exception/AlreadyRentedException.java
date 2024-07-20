@@ -4,6 +4,9 @@ import hr.truenorth.vhs_rental.model.Rental;
 
 import java.util.List;
 
+/**
+ * Exception thrown when attempting to rent during a date range already rented
+ */
 public class AlreadyRentedException extends RuntimeException {
 
     private final List<Rental> conflictingRentals;
